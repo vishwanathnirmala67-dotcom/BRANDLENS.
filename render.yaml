@@ -1,0 +1,17 @@
+services:
+  - type: web
+    name: brandlens-api
+    runtime: python
+    rootDir: backend
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn main:app --host 0.0.0.0 --port $PORT
+    plan: free
+    envVars:
+      - key: ALLOWED_ORIGINS
+        value: https://anjalisaxena13.github.io,https://vishwanathnirmala67-dotcom.github.io,http://localhost:5173
+      - key: AUTH_SECRET        # signs login tokens
+        generateValue: true
+      - key: DB_PATH            # SQLite file; free Render disk is NOT persistent (see README)
+        value: /tmp/brandlens.db
+      - key: ANTHROPIC_API_KEY   # optional: enables AI tone check
+        sync: false
