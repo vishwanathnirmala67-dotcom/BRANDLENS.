@@ -4,6 +4,6 @@ import react from '@vitejs/plugin-react'
 import tailwindcss from '@tailwindcss/vite'
 
 export default defineConfig({
-  base: '/BrandLens/',
+  base: process.env.VERCEL ? '/' : '/BrandLens/',
   plugins: [react(), tailwindcss()],
 })
